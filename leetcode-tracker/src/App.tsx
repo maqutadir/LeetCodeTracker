@@ -1,7 +1,8 @@
 import React from 'react';
+import ProblemDataForm from './components/ProblemDataForm';
 
 function App() {
-  return null
+  return <ProblemDataForm/>
 }
 
 export default App;
