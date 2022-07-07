@@ -1,7 +1,6 @@
-package com.leetcodetracker.leetcodetrackerbackend.rep;
+package com.leetcodetracker.problemtracker;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
-import com.leetcodetracker.leetcodetrackerbackend.models.ProblemTracker;
 
 public interface ProblemTrackerRepository extends MongoRepository<ProblemTracker, Integer> {
     

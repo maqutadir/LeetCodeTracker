@@ -1,4 +1,4 @@
-package com.leetcodetracker.leetcodetrackerbackend;
+package com.leetcodetracker.problemtracker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
