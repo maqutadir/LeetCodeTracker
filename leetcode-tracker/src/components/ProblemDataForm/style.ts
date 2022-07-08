@@ -70,6 +70,13 @@ width: 100%;
 border-radius: 10px;
 height: 150px;
 `
+const SubmitButton = styled.button`
+width: 100%;
+border-radius: 10px;
+background: green;
+color: white;
+height: 40px;
+`
 
 
-export {Section, Label, ShortInput, InputGroup, AttributesContainer, SectionTitle, FormContainer, TimeLineContainer, SectionContainer, TimeLineAttributesContainer, FormTitle, Notes}
+export {Section, Label, ShortInput, InputGroup, AttributesContainer, SectionTitle, FormContainer, TimeLineContainer, SectionContainer, TimeLineAttributesContainer, FormTitle, Notes, SubmitButton}
