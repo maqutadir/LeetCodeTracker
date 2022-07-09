@@ -1,8 +1,9 @@
-import React, {ChangeEvent, FunctionComponent, useState} from "react";
+import React, {ChangeEvent, FunctionComponent, useEffect, useState} from "react";
 import internal from "stream";
-import { BooleanLiteral, isConstructorDeclaration } from "typescript";
+import { BooleanLiteral, isConstructorDeclaration, Set } from "typescript";
 import * as S from './style'
 import { postAProblem } from '../../api/services/ProblemsService'
+import { ErrorMessage } from  '../ErrorMessage'
 
 interface problemData {
     problemNumber: number;
@@ -32,9 +33,16 @@ interface problemData {
     timesSolved: number;
 }
 
+interface errors {
+    problemNumber: Set<string>,
+    notes: Set<string>,
+    problemDesc: Set<string>,
+}
+
 const ProblemDataForm:FunctionComponent = () => {
     const [problemState, setProblemState] = useState<problemData>({problemNumber: 0, problemDesc: '', dataStructure1: '',dataStructure2: '' ,dataStructure3: '' ,timeComplexity: '' ,spaceComplexity: '',algorithm1: '' , algorithm2: '',concept1: '' ,concept2: '',concept3: '', notes: '',
     firstAttempted: new Date(Date.now()), firstAttemptSolve: 'false', lastAttempted: new Date(Date.now()), lastAttemptSolve: false, lastTimeTaken: 0, timesSolved: 0})
+    const [errors, setErrors] = useState<errors>({problemNumber: new Set(''), notes: new Set(''), problemDesc: new Set('')})
 
     const handleChange = (e: any) => {
         console.log("Event is", e.target.value)
@@ -42,13 +50,40 @@ const ProblemDataForm:FunctionComponent = () => {
             return {...prev, [e.target.id]: e.target.value}
         }
         setProblemState(updatedState(problemState))
+        
     }
+
+    useEffect(() => {
+        checkErrors(problemState)
+    }, [problemState])
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
         console.log('Data is', problemState)
-        postAProblem(problemState)
+        //postAProblem(problemState)
+        //checkErrors(problemState)
     }
+
+    const checkErrors = (state: problemData) => {
+        if (!state.problemNumber || state.problemNumber < 1) {
+            errors.problemNumber.add("Valid Problem Number required")
+        } else if (errors.problemNumber.has("Valid Problem Number required")) errors.problemNumber.delete("Valid Problem Number required")
+
+        if (state.problemDesc.length <= 10) {
+            errors.problemDesc.add("Problem description with atleast 10 characters required")
+        } else if (errors.problemDesc.has("Problem description with atleast 10 characters required")) errors.problemDesc.delete("Problem description with atleast 10 character required")
+
+        if (state.notes.length <= 100) {
+            errors.notes.add("Problem description with atleast 100 characters required")
+        } else if (errors.notes.has("Problem description with atleast 100 characters required")) errors.notes.delete("Problem description with atleast 100 characters required")
+        setErrors({...errors})
+    }
+
+    const convertErros = (errorSet: any) => {
+        if (errorSet) return [...errorSet].map(ele =>  { return ErrorMessage(ele) })
+    }
+
+    console.log('Errors are', errors)
 
     console.log('Problem state is', problemState)
 
@@ -67,7 +102,12 @@ const ProblemDataForm:FunctionComponent = () => {
                             <S.ShortInput id='problemDesc' value={problemState.problemDesc} onChange={handleChange} ></S.ShortInput>
                         </S.InputGroup>
                     </S.AttributesContainer>
+                    <S.ErrorContainer>
+                            <S.ProblemNoError>{convertErros(errors.problemNumber)}</S.ProblemNoError>
+                            <S.ProblemDescError>{convertErros(errors.problemDesc)}</S.ProblemDescError>
+                    </S.ErrorContainer> 
                 </S.Section>
+
                 <S.Section>
                     <S.SectionTitle>Data Structures Used</S.SectionTitle>
                     <S.AttributesContainer>
@@ -131,6 +171,9 @@ const ProblemDataForm:FunctionComponent = () => {
                 <S.Section>
                     <S.SectionTitle>Notes</S.SectionTitle>
                     <S.InputGroup><S.Notes id='notes' value={problemState.notes} onChange={handleChange}/></S.InputGroup>
+                    <S.ErrorContainer>
+                            {convertErros(errors.notes)}
+                    </S.ErrorContainer> 
                 </S.Section>
         </S.SectionContainer>
         <S.TimeLineContainer>

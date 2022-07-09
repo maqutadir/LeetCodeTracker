@@ -54,6 +54,20 @@ width: 90%;
 padding: 10px;
 
 `
+const ErrorContainer = styled.div`
+display: flex;
+justify-content: space-around;
+text-align: center;
+`
+const ProblemNoError = styled.div`
+display: inline;
+width: 50%;
+`
+
+const ProblemDescError = styled.div`
+display: inline;
+width: 50%;
+`
 
 const AttributesContainer = styled.div`
 display: flex;
@@ -79,4 +93,4 @@ height: 40px;
 `
 
 
-export {Section, Label, ShortInput, InputGroup, AttributesContainer, SectionTitle, FormContainer, TimeLineContainer, SectionContainer, TimeLineAttributesContainer, FormTitle, Notes, SubmitButton}
+export {Section, Label, ShortInput, InputGroup, AttributesContainer, SectionTitle, FormContainer, TimeLineContainer, SectionContainer, TimeLineAttributesContainer, FormTitle, Notes, SubmitButton, ErrorContainer, ProblemNoError, ProblemDescError}
