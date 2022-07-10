@@ -60,7 +60,7 @@ const ProblemDataForm:FunctionComponent = () => {
     const handleSubmit = (e: any) => {
         e.preventDefault()
         console.log('Data is', problemState)
-        //postAProblem(problemState)
+        postAProblem(problemState)
         //checkErrors(problemState)
     }
 
@@ -71,7 +71,7 @@ const ProblemDataForm:FunctionComponent = () => {
 
         if (state.problemDesc.length <= 10) {
             errors.problemDesc.add("Problem description with atleast 10 characters required")
-        } else if (errors.problemDesc.has("Problem description with atleast 10 characters required")) errors.problemDesc.delete("Problem description with atleast 10 character required")
+        } else if (errors.problemDesc.has("Problem description with atleast 10 characters required")) errors.problemDesc.delete("Problem description with atleast 10 characters required")
 
         if (state.notes.length <= 100) {
             errors.notes.add("Problem description with atleast 100 characters required")
@@ -212,4 +212,4 @@ const ProblemDataForm:FunctionComponent = () => {
     </>
 }
 
-export default ProblemDataForm
+export  { ProblemDataForm, type problemData }

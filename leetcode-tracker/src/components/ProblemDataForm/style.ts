@@ -13,6 +13,7 @@ margin-left: auto;
 margin-right: auto;
 display: flex;
 color: white;
+width: 90%;
 `
 const SectionContainer = styled.div`
 background: blue;

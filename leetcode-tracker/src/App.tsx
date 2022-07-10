@@ -1,12 +1,11 @@
 import React from 'react';
-import ProblemDataForm from './components/ProblemDataForm';
-import { ProblemsService } from './api/services/ProblemsService';
+import { ProblemDataForm } from './components/ProblemDataForm';
+import { ProblemDataList } from './components/ProblemDataList';
 
 function App() {
   return <>
+  <ProblemDataList/>
   <ProblemDataForm/>
-  {ProblemsService()}
-
   </>
 }
 
