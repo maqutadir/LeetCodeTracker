@@ -5,6 +5,7 @@ margin-top: 100px;
 max-width: 1200px;
 margin-left: auto;
 margin-right: auto;
+margin-bottom: 100px;
 display: flex;
 color: white;
 background: blue;
@@ -24,6 +25,7 @@ const ProblemListElement = styled.div`
 display: flex;
 justify-content: space-around;
 width: 100%;
+border-bottom: 2px solid black;
 `
 const ProblemNumber = styled.p`
 background: darkBlue;
@@ -44,4 +46,9 @@ border-radius: 10px;
 color: white;
 `
 
-export {ProblemListContainer, ProblemListTitle, ProblemListElement, ProblemNumber, ProblemDescription, ViewButton}
+const NoProblems = styled.div`
+text-align: center;
+width: 100%;
+`
+
+export {ProblemListContainer, ProblemListTitle, ProblemListElement, ProblemNumber, ProblemDescription, ViewButton, NoProblems}

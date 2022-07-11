@@ -32,6 +32,7 @@ const ProblemDataList: FunctionComponent = () => {
     }
 
     const ProblemList = () => {
+        if (allProblems.length === 0) return <S.NoProblems>You haven't started learning any problems yet. No problems in the database</S.NoProblems>
         return allProblems.map(problem => {
             const { problemNumber, problemDesc } = problem
             console.log('All my problem details are', problemNumber, problemDesc)
