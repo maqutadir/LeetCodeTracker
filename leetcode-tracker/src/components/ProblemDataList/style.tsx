@@ -26,10 +26,13 @@ justify-content: space-around;
 width: 100%;
 `
 const ProblemNumber = styled.p`
+background: darkBlue;
+width: 5%;
+text-align: center;
 `
 
 const ProblemDescription = styled.p`
-width: 60%;
+width: 70%;
 `
 
 const ViewButton = styled.button`

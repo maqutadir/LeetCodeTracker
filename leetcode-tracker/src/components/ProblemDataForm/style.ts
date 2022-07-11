@@ -22,7 +22,7 @@ padding: 10px;
 `
 
 const TimeLineContainer = styled.div`
-background-color: red;
+background-color: darkBlue;
 display: flex;
 flex-direction: column;
 margin-left: 20px;
